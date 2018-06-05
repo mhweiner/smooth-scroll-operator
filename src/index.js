@@ -52,13 +52,13 @@ export default class Index {
 
     }
 
-    let currentTime = Date.now(),
-      endTime = Date.now() + duration,
-      timeElapsed = endTime - currentTime,
-      progress = timeElapsed / duration;
+    let endTime = Date.now() + duration;
 
     function animateScroll() {
 
+      let currentTime = Date.now();
+      let timeElapsed = endTime - currentTime;
+      let progress = timeElapsed / duration;
       let delta = easingFunction(progress);
       let nextPos = getCurrentPosition() > target ? getCurrentPosition() - delta : getCurrentPosition() + delta;
 
