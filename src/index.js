@@ -34,6 +34,11 @@ export default class Index {
     duration = duration === undefined ? 400 : duration;
     easing = easing || this.EASE_IN_OUT;
 
+    //validate target
+    let maxTarget = el.scrollHeight - el.offsetHeight;
+    //constrain to max
+    target = target > maxTarget ? maxTarget : target;
+
     let easingFunction = BezierEasing.apply(undefined, easing);
 
     let raf = (function(){
@@ -52,15 +57,22 @@ export default class Index {
 
     }
 
-    let endTime = Date.now() + duration;
+    let startPosition = getCurrentPosition();
+    let startTime = Date.now();
+    let endTime = startTime + duration;
+    let totalDelta = target - startPosition;
 
     function animateScroll() {
 
       let currentTime = Date.now();
-      let timeElapsed = endTime - currentTime;
-      let progress = timeElapsed / duration;
-      let delta = easingFunction(progress);
-      let nextPos = getCurrentPosition() > target ? getCurrentPosition() - delta : getCurrentPosition() + delta;
+      let timeElapsed = currentTime - startTime;
+      let percentageTimeElapsed = timeElapsed / duration;
+      let percentageChange = easingFunction(percentageTimeElapsed);
+      let nextPos = percentageChange * totalDelta;
+
+      console.log(`timeElapsed: ${timeElapsed}`)
+      console.log(`percentageTimeElapsed: ${percentageTimeElapsed}`)
+      console.log(`percentageChange: ${percentageTimeElapsed}`)
 
       // update element
       move(nextPos);
@@ -69,6 +81,10 @@ export default class Index {
       if (currentTime < endTime) {
 
         raf(animateScroll);
+
+      } else {
+
+        move(target);
 
       }
 
