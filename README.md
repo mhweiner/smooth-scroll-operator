@@ -3,67 +3,32 @@ A dead simple and lightweight smooth scroll animation using requestAnimationFram
 
 No need to ask, he's a [smooth operator](https://www.youtube.com/watch?v=4TYv2PhG89A)...
 
-## Example Usage
-
-```javascript
-// Set routes
-mr.setRoutes({
-  Tasks: 'tasks',
-  Task: 'task/:id',
-  Search: 'search/:keyword/:sortBy'
-});
-
-// Set controllers
-mr.setControllers({
-  Tasks: function(map){ ... },
-  Task: function(map){ ... },
-  Search: function(map){ ... }
-});
-
-// Route to specified route, by key (calls the appropriate controller).
-mr.go('Task', {id: 123});
-
-// Change hash on page to specified route, but do not actually route (does not call the controller).
-mr.go('Task', {id: 123}, true);
-
-// Route by reading from page hash and finding a match in Router.routes.
-// If a match is found, returns `true`. Otherwise, it returns `false`.
-mr.route();
-
-// Register a callback when hash changes
-mr.setOnHashChange(confirm('Are you sure you want to leave?'));
-
-// Un-register callback
-mr.setOnHashChange(null);
-
-// Get route object from hash, if match is found
-mr.getObjFromHash('task/123'); //returns {id: 'Task', params: {id: 123}}
-```
-
 ## Installation
 
 ```bash
-npm i mr-router
+npm i smooth-scroll-operator
 ```
 
-Then import to include in your webpack build:
+## Example Usage
 
 ```javascript
-import mr from 'mr-router'
+import SmoothScrollOperator from 'smooth-scroll-operator';
 
-//do things with mr here
-mr.route();
+let el = document.querySelector('.myElement');
+
+SmoothScrollOperator.scrollY(el, 500);
 ```
 
-### Manual Installation
+Scroll to y = 500, with a duration of 200ms, and a custom cubic-bezier easing function:
 
-See the [Releases](https://github.com/mhweiner/mr-router/releases).
-
-```html
-<script src="mr-router.production.min.js">
-```
 ```javascript
-MrRouter.route(); //or whatever's clever
+SmoothScrollOperator.scrollY(el, 500, 200, [0.42, 0.0, 0.58, 1.0]);
+```
+
+Scroll to y = 500, with a duration of 200ms, and a pre-defined easing function.
+
+```javascript
+SmoothScrollOperator.scrollY(el, 500, 200, SmoothScrollOperator.EASE_IN_OUT);
 ```
 
 ## API
