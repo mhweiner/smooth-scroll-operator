@@ -41,7 +41,7 @@ The y position to animate/scroll to. Defaults to 0.
 
 #### [int=] duration
 
-Transition (animation) duration in milliseconds.
+Transition (animation) duration in milliseconds. Defaults to 400ms.
 
 #### [array=] easing
 
@@ -54,6 +54,8 @@ SmoothScrollOperator.EASE_OUT;
 SmoothScrollOperator.EASE_IN_OUT;
 SmoothScrollOperator.LINEAR;
 ```
+
+Defaults to `SmoothScrollOperator.EASE_IN_OUT`.
 
 ## License
 
