@@ -12,23 +12,23 @@ npm i smooth-scroll-operator
 ## Example Usage
 
 ```javascript
-import SmoothScrollOperator from 'smooth-scroll-operator';
+import sso from 'smooth-scroll-operator';
 
 let el = document.querySelector('.myElement');
 
-SmoothScrollOperator.scrollY(el, 500);
+sso.scrollY(el, 500);
 ```
 
 Scroll to y = 500, with a duration of 200ms, and a custom cubic-bezier easing function:
 
 ```javascript
-SmoothScrollOperator.scrollY(el, 500, 200, [0.42, 0.0, 0.58, 1.0]);
+sso.scrollY(el, 500, 200, [0.42, 0.0, 0.58, 1.0]);
 ```
 
 Scroll to y = 500, with a duration of 200ms, and a pre-defined easing function.
 
 ```javascript
-SmoothScrollOperator.scrollY(el, 500, 200, SmoothScrollOperator.EASE_IN_OUT);
+sso.scrollY(el, 500, 200, sso.EASE_IN_OUT);
 ```
 
 ## API
@@ -51,13 +51,15 @@ Transition (animation) duration in milliseconds.
 
 #### [array=] easing
 
-An array to pass to the cubic-bezier easing function. You can also use the [predefined constants](#Contants).
+An array to pass to the cubic-bezier easing function. You can also use the following predefined constants:
 
-## Constants
-
-things...
-
-
+```javascript
+SmoothScrollOperator.EASE;
+SmoothScrollOperator.EASE_IN;
+SmoothScrollOperator.EASE_OUT;
+SmoothScrollOperator.EASE_IN_OUT;
+SmoothScrollOperator.LINEAR;
+```
 
 ## License
 
@@ -65,4 +67,4 @@ things...
 
 ## Contribution
 
-DO IT! PR's welcome.
+DO IT! PR's welcome. Need to add testing, linting, and support for `scrollX`, or both x/y at the same time.
