@@ -33,59 +33,31 @@ SmoothScrollOperator.scrollY(el, 500, 200, SmoothScrollOperator.EASE_IN_OUT);
 
 ## API
 
-### `route()`
+### `scrollY([DOMElement] el, [int=] targetY, [int=] duration, [array=] easing)`
 
-Routes based on current hash. Returns `true` if there was a match, `false` otherwise. Any callbacks set using `setOnHashChange` are ignored.
+Animates DOM element `el`'s `.scrollTop` property to `targetY`, for duration `duration`, using easing specified by `easing`.
 
-### `status()`
+#### [DOMElement] el
 
-Returns an object which represents the current hash.
+The element to scroll.
 
-### `go(id {string}, params {object}, doNotRoute {boolean=})`
+#### [int=] targetY
 
-Changes the hash, which then is handled by onHashChange, which calls the controller.
-- `doNotRoute` is optional. If true, the hash is changed **without** calling any matching controller, and `navigateAwayCallback` is ignored.
+The y position to animate/scroll to. Defaults to 0.
 
-### `getObjFromHash(hash {string})`
+#### [int=] duration
 
-Given the specified hash string, if a match was found in Router.routes, it returns an object, ex: `{id: 'blah', params:{}}`. Returns false if no
-match was found.
+Transition (animation) duration in milliseconds.
 
-### `setRoutes(map {object})`
+#### [array=] easing
 
-Sets or adds the routes given. Will override if any duplicates are present. It `extends` the route map with `Object.assign()`.
+An array to pass to the cubic-bezier easing function. You can also use the [predefined constants](#Contants).
 
-```
-mr.setRoutes({foo: 'bar'});
-mr.setRoutes({boo: 'nar'});
-mr.getRoutes(); // {foo: 'bar', boo: 'nar'}
-```
+## Constants
 
-### `setControllers(map {object})`
+things...
 
-Sets or adds the controllers given. Will override if any duplicates are present. It `extends` the route map with `Object.assign()`.
 
-```
-mr.setControllers({foo: [function]});
-mr.setControllers({boo: [function]});
-mr.getControllers(); // {foo: [function], boo: [function]}
-```
-
-### `setOnHashChange([function])`
-
-Sets a callback to fire on hash changes. If that callback returns `false`, then the hash change is undone (`window.history.go(-1)` is called). This is great for preventing loss of unsaved changes in a dialog box, for example.
-
-### `clearRoutes()`
-
-Clears the routes.
-
-### `clearControllers()`
-
-Clears the controllers.
-
-## Route matching
-
-For more details on how we match routes to/from hashes, please [see the documentation for RouteMatcher](https://github.com/cowboy/javascript-route-matcher).
 
 ## License
 
