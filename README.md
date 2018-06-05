@@ -20,7 +20,6 @@ sso.scrollY(el, 500);
 
 // Scroll to y = 500, with a duration of 200ms, and a custom cubic-bezier easing function:
 sso.scrollY(el, 500, 200, [0.42, 0.0, 0.58, 1.0]);
-```
 
 // Scroll to y = 500, with a duration of 200ms, and a pre-defined easing function.
 sso.scrollY(el, 500, 200, sso.EASE_IN_OUT);
