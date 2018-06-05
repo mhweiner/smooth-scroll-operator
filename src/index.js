@@ -25,7 +25,7 @@ export default class Index {
   static scrollY(el, target, duration, easing) {
 
     //defaults
-    if (!el || typeof el === 'object') {
+    if (!el || typeof el !== 'object') {
 
       throw 'el is required and must be an object';
 
