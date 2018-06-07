@@ -22,24 +22,33 @@ export default class Index {
     return [0.00, 0.0, 1.00, 1.0];
   }
 
-  static scrollY(el, target, duration, easing) {
+  /**
+   * Animate scrolling element to position. Possible options:
+   * [HTMLElement] el
+   * [int=] target
+   * [int=] duration (default: 400)
+   * [array=] easing (default: SmoothScrollOperator.EASE_IN_OUT)
+   * [function=] onDone (default: null)
+   * @param options
+   */
+  static scrollY(options) {
 
     //defaults
-    if (!el || typeof el !== 'object') {
+    if (typeof options.el !== 'object') {
 
       throw 'el is required and must be an object';
 
     }
-    target = target || 0;
-    duration = duration === undefined ? 400 : duration;
-    easing = easing || this.EASE_IN_OUT;
+    options.target = options.target || 0;
+    options.duration = options.duration === undefined ? 400 : options.duration;
+    options.easing = options.easing || this.EASE_IN_OUT;
 
     //validate target
-    let maxTarget = el.scrollHeight - el.offsetHeight;
+    let maxTarget = options.el.scrollHeight - options.el.offsetHeight;
     //constrain to max
-    target = target > maxTarget ? maxTarget : target;
+    options.target = options.target > maxTarget ? maxTarget : options.target;
 
-    let easingFunction = BezierEasing.apply(undefined, easing);
+    let easingFunction = BezierEasing.apply(undefined, options.easing);
 
     let raf = (function(){
       return  window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || function( callback ){ window.setTimeout(callback, 1000 / 60); };
@@ -47,32 +56,28 @@ export default class Index {
 
     function move(pos) {
 
-      el.scrollTop = pos;
+      options.el.scrollTop = pos;
 
     }
 
     function getCurrentPosition() {
 
-      return el.scrollTop;
+      return options.el.scrollTop;
 
     }
 
     let startPosition = getCurrentPosition();
     let startTime = Date.now();
-    let endTime = startTime + duration;
+    let endTime = startTime + options.duration;
     let totalDelta = target - startPosition;
 
     function animateScroll() {
 
       let currentTime = Date.now();
       let timeElapsed = currentTime - startTime;
-      let percentageTimeElapsed = timeElapsed / duration;
+      let percentageTimeElapsed = timeElapsed / options.duration;
       let percentageChange = easingFunction(percentageTimeElapsed);
       let nextPos = percentageChange * totalDelta;
-
-      console.log(`timeElapsed: ${timeElapsed}`)
-      console.log(`percentageTimeElapsed: ${percentageTimeElapsed}`)
-      console.log(`percentageChange: ${percentageTimeElapsed}`)
 
       // update element
       move(nextPos);
@@ -84,7 +89,13 @@ export default class Index {
 
       } else {
 
-        move(target);
+        //done!
+        move(options.target);
+        if (typeof options.onDone === 'function') {
+
+          options.onDone.apply();
+
+        }
 
       }
 

@@ -20,22 +20,38 @@ import sso from 'smooth-scroll-operator';
 
 let el = document.querySelector('.myElement');
 
-sso.scrollY(el, 500);
+//scroll el to 500
+sso.scrollY({
+  el: el,
+  target: 500
+});
 
 // Scroll to y = 500, with a duration of 200ms, and a custom cubic-bezier easing function:
-sso.scrollY(el, 500, 200, [0.42, 0.0, 0.58, 1.0]);
+sso.scrollY({
+  el: el,
+  target: 500,
+  duration: 200,
+  easing: [0.42, 0.0, 0.58, 1.0]
+});
 
 // Scroll to y = 500, with a duration of 200ms, and a pre-defined easing function.
-sso.scrollY(el, 500, 200, sso.EASE_IN_OUT);
+sso.scrollY({
+  el: el,
+  target: 500,
+  duration: 200,
+  easing: SmoothScrollOperator.EASE_IN
+});
 ```
 
 ## API
 
-### `scrollY([DOMElement] el, [int=] targetY, [int=] duration, [array=] easing)`
+### `scrollY([object] options)`
 
 Animates DOM element `el`'s `.scrollTop` property to `targetY`, for duration `duration`, using easing specified by `easing`.
 
-#### [DOMElement] el
+Options:
+
+#### [HTMLElement] el
 
 The element to scroll.
 
@@ -60,6 +76,10 @@ SmoothScrollOperator.LINEAR;
 ```
 
 Defaults to `SmoothScrollOperator.EASE_IN_OUT`.
+
+#### [function] onDone
+
+A callback function that is called when the animation is finished.
 
 ## License
 
