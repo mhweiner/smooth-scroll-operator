@@ -69,7 +69,7 @@ export default class Index {
     let startPosition = getCurrentPosition();
     let startTime = Date.now();
     let endTime = startTime + options.duration;
-    let totalDelta = target - startPosition;
+    let totalDelta = options.target - startPosition;
 
     function animateScroll() {
 

@@ -41,13 +41,19 @@ sso.scrollY({
   duration: 200,
   easing: SmoothScrollOperator.EASE_IN
 });
+
+//scroll window
+sso.scrollY({
+  el: window.document.body,
+  target: 500
+});
 ```
 
 ## API
 
 ### `scrollY([object] options)`
 
-Animates DOM element `el`'s `.scrollTop` property to `targetY`, for duration `duration`, using easing specified by `easing`.
+Animates the `.scrollTop` property of a given element (scrolls to target position).
 
 Options:
 
@@ -55,7 +61,7 @@ Options:
 
 The element to scroll.
 
-#### [int=] targetY
+#### [int=] target
 
 The y position to animate/scroll to. Defaults to 0.
 
