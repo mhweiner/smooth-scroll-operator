@@ -77,7 +77,7 @@ export default class Index {
       let timeElapsed = currentTime - startTime;
       let percentageTimeElapsed = timeElapsed / options.duration;
       let percentageChange = easingFunction(percentageTimeElapsed);
-      let nextPos = percentageChange * totalDelta;
+      let nextPos = percentageChange * totalDelta + startPosition;
 
       // update element
       move(nextPos);
