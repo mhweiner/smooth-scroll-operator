@@ -21,72 +21,64 @@ import sso from 'smooth-scroll-operator';
 let el = document.querySelector('.myElement');
 
 //scroll el to 500
-sso.scrollY({
-  el: el,
-  target: 500
-});
+sso.scrollY(el, 500);
 
 // Scroll to y = 500, with a duration of 200ms, and a custom cubic-bezier easing function:
-sso.scrollY({
-  el: el,
-  target: 500,
+sso.scrollY(el, 500, {
   duration: 200,
   easing: [0.42, 0.0, 0.58, 1.0]
 });
 
 // Scroll to y = 500, with a duration of 200ms, and a pre-defined easing function.
-sso.scrollY({
-  el: el,
-  target: 500,
+sso.scrollY(el, 500, {
   duration: 200,
   easing: SmoothScrollOperator.EASE_IN
 });
 
 //scroll window
-sso.scrollY({
-  el: window.document.body,
-  target: 500
-});
+sso.scrollY(window.document.body, 500);
 ```
 
 ## API
 
-### `scrollY([object] options)`
+### `scrollY({HTMLElement} el, {number} targetY, {object=} options)`
 
-Animates the `.scrollTop` property of a given element (scrolls to target position). Returns an instance of (DOMAnimateProperty)[https://github.com/mhweiner/dom-animate-property].
+Animates the `.scrollTop` property of a given element (scrolls to target position). Returns an instance of [DOMAnimateProperty](https://github.com/mhweiner/dom-animate-property).
 You can cancel the animation by calling `.cancel()` on the returned instance.
 
-Options:
-
-#### [HTMLElement] el
+#### `{HTMLElement} el`
 
 The element to scroll.
 
-#### [int=] target
+#### `{number} targetY`
 
-The y position to animate/scroll to. Defaults to 0.
+The y position to animate/scroll to in pixels.
 
-#### [int=] duration
+#### `{object=} options`
 
-Transition (animation) duration in milliseconds. Defaults to 400ms.
+An optional map of parameters:
 
-#### [array=] easing
+###### `{string} unit`
 
-An array to pass to the cubic-bezier easing function. You can also use the following predefined constants:
+Unit of value. (Default: `"px"`)
 
-```javascript
-SmoothScrollOperator.EASE;
-SmoothScrollOperator.EASE_IN;
-SmoothScrollOperator.EASE_OUT;
-SmoothScrollOperator.EASE_IN_OUT;
-SmoothScrollOperator.LINEAR;
-```
+###### `{integer} duration`
 
-Defaults to `SmoothScrollOperator.EASE_IN_OUT`.
+Animation duration in milliseconds. (Default: `400`)
 
-#### [function] onDone
+###### `{array} easing`
+
+An array to pass to the cubic-bezier easing function. (Default: `DOMAnimateProperty.EASE_IN_OUT`)
+
+###### `{function} onDone`
 
 A callback function that is called when the animation is finished.
+
+## Constants
+
+### Bezier Curve Easing Functions
+
+`EASE`, `EASE_IN`, `EASE_OUT`, `EASE_IN_OUT`, `LINEAR`
 
 ## License
 
