@@ -23,39 +23,34 @@ export default class SmoothScrollOperator {
   }
 
   /**
-   * Animate scrolling element to position. Possible options:
-   * [HTMLElement] el
-   * [int=] target
-   * [int=] duration (default: 400)
-   * [array=] easing (default: SmoothScrollOperator.EASE_IN_OUT)
-   * [function=] onDone (default: null)
-   * @param options
+   * Animate scrolling element to position.
+   * @param {HTMLElement} el
+   * @param {number} targetY
+   * @param {object=} options
    */
-  static scrollY(options) {
-
-    //defaults
-    if (typeof options.el !== 'object') {
-
-      throw 'el is required and must be an object';
-
-    }
-    options.target = options.target || 0;
-    options.duration = options.duration === undefined ? 400 : options.duration;
-    options.easing = options.easing || SmoothScrollOperator.EASE_IN_OUT;
+  static scrollY(el, targetY, options) {
 
     //validate target
-    let maxTarget = options.el.scrollHeight - options.el.offsetHeight;
-    //constrain to max
-    options.target = options.target > maxTarget ? maxTarget : options.target;
+    let maxTarget = el.scrollHeight - el.offsetHeight;
 
-    let startPosition = options.el.scrollTop;
+    //constrain to max
+    let target = targetY > maxTarget ? maxTarget : targetY;
+
+    //start position is current position
+    let startPosition = el.scrollTop;
+
+    //create new instance of animator
     let animator = new DOMAnimateProperty();
 
-    return animator.animate(options.el, 'scrollTop', startPosition, options.target, {
-      onDone: options.onDone,
-      easing: options.easing,
-      duration: options.duration
-    });
+    //we need a custom element update function, since we need to mutate a direct property of element, not a style
+    // property.
+    let customFunction = (el, pos) => el.scrollTop = pos;
+
+    animator.animate(el, null, startPosition, target, Object.assign({}, options, {
+      customPropertyUpdate: customFunction
+    }));
+
+    return animator;
 
   }
 
