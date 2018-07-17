@@ -53,7 +53,8 @@ sso.scrollY({
 
 ### `scrollY([object] options)`
 
-Animates the `.scrollTop` property of a given element (scrolls to target position).
+Animates the `.scrollTop` property of a given element (scrolls to target position). Returns an instance of (DOMAnimateProperty)[https://github.com/mhweiner/dom-animate-property].
+You can cancel the animation by calling `.cancel()` on the returned instance.
 
 Options:
 

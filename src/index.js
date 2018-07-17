@@ -1,6 +1,6 @@
-import BezierEasing from 'bezier-easing';
+import DOMAnimateProperty from 'dom-animate-property';
 
-export default class Index {
+export default class SmoothScrollOperator {
 
   static get EASE() {
     return [0.25, 0.1, 0.25, 1.0];
@@ -41,67 +41,21 @@ export default class Index {
     }
     options.target = options.target || 0;
     options.duration = options.duration === undefined ? 400 : options.duration;
-    options.easing = options.easing || this.EASE_IN_OUT;
+    options.easing = options.easing || SmoothScrollOperator.EASE_IN_OUT;
 
     //validate target
     let maxTarget = options.el.scrollHeight - options.el.offsetHeight;
     //constrain to max
     options.target = options.target > maxTarget ? maxTarget : options.target;
 
-    let easingFunction = BezierEasing.apply(undefined, options.easing);
+    let startPosition = options.el.scrollTop;
+    let animator = new DOMAnimateProperty();
 
-    let raf = (function(){
-      return  window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || function( callback ){ window.setTimeout(callback, 1000 / 60); };
-    })();
-
-    function move(pos) {
-
-      options.el.scrollTop = pos;
-
-    }
-
-    function getCurrentPosition() {
-
-      return options.el.scrollTop;
-
-    }
-
-    let startPosition = getCurrentPosition();
-    let startTime = Date.now();
-    let endTime = startTime + options.duration;
-    let totalDelta = options.target - startPosition;
-
-    function animateScroll() {
-
-      let currentTime = Date.now();
-      let timeElapsed = currentTime - startTime;
-      let percentageTimeElapsed = timeElapsed / options.duration;
-      let percentageChange = easingFunction(percentageTimeElapsed);
-      let nextPos = percentageChange * totalDelta + startPosition;
-
-      // update element
-      move(nextPos);
-
-      // do the animation unless its over
-      if (currentTime < endTime) {
-
-        raf(animateScroll);
-
-      } else {
-
-        //done!
-        move(options.target);
-        if (typeof options.onDone === 'function') {
-
-          options.onDone.apply();
-
-        }
-
-      }
-
-    }
-
-    animateScroll();
+    return animator.animate(options.el, 'scrollTop', startPosition, options.target, {
+      onDone: options.onDone,
+      easing: options.easing,
+      duration: options.duration
+    });
 
   }
 
