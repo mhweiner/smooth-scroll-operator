@@ -15,10 +15,10 @@
   },
   "homepage": "https://github.com/mhweiner/smooth-scroll-operator",
   "dependencies": {
-    "dom-animate-property": "^1.0.1"
+    "dom-animate-property": "^1.1.0"
   },
   "devDependencies": {
-    "webpack": "^4.8.3",
+    "webpack": "^4.16.1",
     "webpack-cli": "^2.1.3"
   },
   "scripts": {
