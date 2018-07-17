@@ -1,7 +1,7 @@
 {
   "name": "smooth-scroll-operator",
   "description": "A dead simple and lightweight smooth scroll animation utility. Scroll any element. Comes with bezier curve support and a small library of pre-defined easing functions. Animations respect clock.",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "main": "src/index.js",
   "repository": {
     "type": "git",
