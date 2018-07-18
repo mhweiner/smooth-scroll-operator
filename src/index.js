@@ -42,12 +42,10 @@ export default class SmoothScrollOperator {
     //create new instance of animator
     let animator = new DOMAnimateProperty();
 
-    //we need a custom element update function, since we need to mutate a direct property of element, not a style
-    // property.
-    let customFunction = (el, pos) => el.scrollTop = pos;
-
+    //animate!
     animator.animate(el, null, startPosition, target, Object.assign({}, options, {
-      customPropertyUpdate: customFunction
+      customPropertyUpdate: (el, pos) => el.scrollTop = pos,
+      precision: 5
     }));
 
     return animator;
