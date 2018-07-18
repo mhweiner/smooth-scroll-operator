@@ -44,8 +44,7 @@ export default class SmoothScrollOperator {
 
     //animate!
     animator.animate(el, null, startPosition, target, Object.assign({}, options, {
-      customPropertyUpdate: (el, pos) => el.scrollTop = pos,
-      precision: 5
+      customPropertyUpdate: (el, pos) => el.scrollTop = pos
     }));
 
     return animator;
