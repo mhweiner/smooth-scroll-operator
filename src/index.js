@@ -30,8 +30,6 @@ export default class SmoothScrollOperator {
    */
   static scrollY(el, targetY, options) {
 
-    console.log(targetY)
-
     //validate target
     let maxTarget = el.scrollHeight - el.offsetHeight;
 
@@ -47,8 +45,6 @@ export default class SmoothScrollOperator {
     //animate!
     animator.animate(el, null, startPosition, target, Object.assign({}, options, {
       customPropertyUpdate: (el, pos) => {
-
-        console.log(pos)
 
         if (el === window) {
 
