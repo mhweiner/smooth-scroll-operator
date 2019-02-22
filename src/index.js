@@ -30,6 +30,8 @@ export default class SmoothScrollOperator {
    */
   static scrollY(el, targetY, options) {
 
+    console.log(targetY)
+
     //validate target
     let maxTarget = el.scrollHeight - el.offsetHeight;
 
@@ -37,14 +39,28 @@ export default class SmoothScrollOperator {
     let target = targetY > maxTarget ? maxTarget : targetY;
 
     //start position is current position
-    let startPosition = el.scrollTop;
+    let startPosition = el === window ? el.scrollY : el.scrollTop;
 
     //create new instance of animator
     let animator = new DOMAnimateProperty();
 
     //animate!
     animator.animate(el, null, startPosition, target, Object.assign({}, options, {
-      customPropertyUpdate: (el, pos) => el.scrollTop = pos
+      customPropertyUpdate: (el, pos) => {
+
+        console.log(pos)
+
+        if (el === window) {
+
+          el.scrollTo(0, pos);
+
+        } else {
+
+          el.scrollTop = pos;
+
+        }
+
+      }
     }));
 
     return animator;

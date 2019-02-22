@@ -36,7 +36,7 @@ sso.scrollY(el, 500, {
 });
 
 //scroll window
-sso.scrollY(window.document.body, 500);
+sso.scrollY(window, 500);
 ```
 
 ## API
