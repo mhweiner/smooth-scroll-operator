@@ -1,3 +1,10 @@
+/*!
+ * https://github.com/mhweiner/smooth-scroll-operator
+ * smooth-scroll-operator - animate scrolling with bezier curve support
+ * @author Marc H. Weiner
+ * @license MIT
+ */
+
 import Animator from 'dom-animate';
 
 export default class SmoothScrollOperator {

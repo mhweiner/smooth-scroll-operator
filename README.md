@@ -77,9 +77,9 @@ animation.stop();
 
 ## API
 
-### `scrollY({HTMLElement} el, {number} targetY, {object=} options)`
+### `scrollY({HTMLElement|window} el, {number} targetY, {object=} options)`
 
-Animates the `.scrollTop` property of a given element (scrolls to target position). Returns an instance of [DOMAnimate](https://github.com/mhweiner/dom-animate).
+Animates the scrolling of a given element (scrolls to target position). Returns an instance of [DOMAnimate](https://github.com/mhweiner/dom-animate).
 You can stop, pause, or resume the animation by calling `.stop()`, `.pause()`, or `.resume()`, respectively, on the returned instance.
 
 #### `{HTMLElement} el`
