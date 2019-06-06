@@ -9,8 +9,24 @@ No need to ask, he's a [smooth operator](https://www.youtube.com/watch?v=4TYv2Ph
 
 ## Installation
 
+NPM:
+
 ```bash
 npm i smooth-scroll-operator
+```
+
+browser:
+
+You can use either `smooth-scroll-operator.umd.js` or `smooth-scroll-operator.min.umd.js` 
+[from the latest release](https://github.com/mhweiner/smooth-scroll-operator/releases) in a `script` tag.
+This includes all dependencies.
+
+```html
+<script src="./path/to/smooth-scroll-operator.min.umd.js"></script>
+<script>
+    let el = document.querySelector('.myElement');
+    SmoothScrollOperator.scrollY(el, 500);
+</script>
 ```
 
 ## Example Usage
@@ -32,7 +48,7 @@ sso.scrollY(el, 500, {
 // Scroll to y = 500, with a duration of 200ms, and a pre-defined easing function.
 sso.scrollY(el, 500, {
   duration: 200,
-  easing: SmoothScrollOperator.EASE_IN
+  easing: sso.EASE_IN
 });
 
 //scroll window
@@ -48,7 +64,7 @@ You can cancel the animation by calling `.cancel()` on the returned instance.
 
 #### `{HTMLElement} el`
 
-The element to scroll.
+The element to scroll. Can be `window`.
 
 #### `{number} targetY`
 
@@ -58,19 +74,15 @@ The y position to animate/scroll to in pixels.
 
 An optional map of parameters:
 
-###### `{string} unit`
-
-Unit of value. (Default: `"px"`)
-
 ###### `{integer} duration`
 
 Animation duration in milliseconds. (Default: `400`)
 
 ###### `{array} easing`
 
-An array to pass to the cubic-bezier easing function. (Default: `DOMAnimateProperty.EASE_IN_OUT`)
+An array to pass to the cubic-bezier easing function. (Default: `SmoothScrollOperator.EASE_IN_OUT`)
 
-###### `{function} onDone`
+###### `{function} onComplete`
 
 A callback function that is called when the animation is finished.
 
