@@ -1,4 +1,4 @@
-import DOMAnimateProperty from 'dom-animate-property';
+import Animator from 'dom-animate';
 
 export default class SmoothScrollOperator {
 
@@ -39,27 +39,20 @@ export default class SmoothScrollOperator {
     //start position is current position
     let startPosition = el === window ? el.scrollY : el.scrollTop;
 
-    //create new instance of animator
-    let animator = new DOMAnimateProperty();
-
     //animate!
-    animator.animate(el, null, startPosition, target, Object.assign({}, options, {
-      customPropertyUpdate: (el, pos) => {
+    return new Animator(startPosition, target, x => {
 
-        if (el === window) {
+      if (el === window) {
 
-          el.scrollTo(0, pos);
+        el.scrollTo(0, x);
 
-        } else {
+      } else {
 
-          el.scrollTop = pos;
-
-        }
+        el.scrollTop = x;
 
       }
-    }));
 
-    return animator;
+    }, options);
 
   }
 

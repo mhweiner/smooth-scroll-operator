@@ -2,12 +2,26 @@
   "name": "smooth-scroll-operator",
   "description": "A dead simple and lightweight smooth scroll animation utility. Scroll any element. Comes with bezier curve support and a small library of pre-defined easing functions. Animations respect clock.",
   "version": "4.0.1",
-  "main": "src/index.js",
+  "main": "dist/smooth-scroll-operator.cjs.js",
+  "module": "dist/smooth-scroll-operator.esm.js",
+  "browser": "dist/smooth-scroll-operator.umd.js",
+  "browserMinified": "dist/smooth-scroll-operator.min.umd.js",
+  "globalName":  "SmoothScrollOperator",
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/mhweiner/smooth-scroll-operator.git"
   },
-  "keywords": [],
+  "keywords": [
+    "animate",
+    "animate scroll",
+    "dom animation",
+    "scroll",
+    "smooth scrolling",
+    "smoooth window scrolling"
+  ],
   "author": "Marc H. Weiner (http://mhweiner.com)",
   "license": "MIT",
   "bugs": {
@@ -15,16 +29,23 @@
   },
   "homepage": "https://github.com/mhweiner/smooth-scroll-operator",
   "dependencies": {
-    "dom-animate-property": "1.4.3"
+    "dom-animate": "^4.0.9"
   },
   "devDependencies": {
-    "webpack": "^4.16.1",
-    "webpack-cli": "^2.1.3"
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/preset-env": "^7.4.5",
+    "babel-cli": "^6.26.0",
+    "np": "^5.0.2",
+    "rollup": "^1.14.2",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-commonjs": "^10.0.0",
+    "rollup-plugin-node-resolve": "^5.0.1",
+    "rollup-plugin-uglify": "^6.0.2"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build-prod": "webpack index=./src/index.js --output-path='./dist' --output-filename='smooth-scroll-operator.production.min.js' --mode production",
-    "build-dev": "webpack index=./src/index.js --output-path='./dist' --output-filename='smooth-scroll-operator.development.js' --mode development",
-    "build": "npm run build-prod && npm run build-dev"
+    "test": "echo \"Error: no test specified\"",
+    "build": "rollup -c",
+    "release": "np"
   }
 }
