@@ -1,33 +1,19 @@
-/*!
+/**
  * https://github.com/mhweiner/smooth-scroll-operator
  * smooth-scroll-operator - animate scrolling with bezier curve support
  * @author Marc H. Weiner
  * @license MIT
  */
 
-import Animator from 'dom-animate';
+var Animator = require('dom-animate');
 
-export default class SmoothScrollOperator {
+function SmoothScrollOperator() {
 
-  static get EASE() {
-    return [0.25, 0.1, 0.25, 1.0];
-  }
-
-  static get EASE_IN() {
-    return [0.42, 0.0, 1.00, 1.0];
-  }
-
-  static get EASE_OUT() {
-    return [0.00, 0.0, 0.58, 1.0];
-  }
-
-  static get EASE_IN_OUT() {
-    return [0.42, 0.0, 0.58, 1.0];
-  }
-
-  static get LINEAR() {
-    return [0.00, 0.0, 1.00, 1.0];
-  }
+  this.EASE = [0.25, 0.1, 0.25, 1];
+  this.EASE_IN = [0.42, 0, 1, 1];
+  this.EASE_OUT = [0, 0, 0.58, 1];
+  this.EASE_IN_OUT = [0.42, 0, 0.58, 1];
+  this.LINEAR = [0, 0, 1, 1];
 
   /**
    * Animate scrolling element to position.
@@ -35,19 +21,19 @@ export default class SmoothScrollOperator {
    * @param {number} targetY
    * @param {object=} options
    */
-  static scrollY(el, targetY, options) {
+  this.scrollY = function(el, targetY, options) {
 
     //validate target
-    let maxTarget = el.scrollHeight - el.offsetHeight;
+    var maxTarget = el.scrollHeight - el.offsetHeight;
 
     //constrain to max
-    let target = targetY > maxTarget ? maxTarget : targetY;
+    var target = targetY > maxTarget ? maxTarget : targetY;
 
     //start position is current position
-    let startPosition = el === window ? el.scrollY : el.scrollTop;
+    var startPosition = el === window ? el.scrollY : el.scrollTop;
 
     //animate!
-    return new Animator(startPosition, target, x => {
+    return new Animator(startPosition, target, function(x) {
 
       if (el === window) {
 
@@ -61,6 +47,8 @@ export default class SmoothScrollOperator {
 
     }, options);
 
-  }
+  };
 
 }
+
+module.exports = SmoothScrollOperator;

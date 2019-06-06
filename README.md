@@ -1,11 +1,13 @@
 # smooth-scroll-operator
-A dead simple and lightweight smooth scroll animation. Scroll any element. Comes with bezier curve support and a small library of pre-defined easing functions.
-
-Animations respect the actual clock, so no matter the frame rate, the animation will still properly last the appropriate amount of time.
-
-Animations are performed using `window.requestAnimationFrame`.
+A dead simple and lightweight library to animate the scroll of the window or any HTMLElement.
 
 No need to ask, he's a [smooth operator](https://www.youtube.com/watch?v=4TYv2PhG89A)...
+
+- Really small filesize, only 1 dependency (<3KB uncompressed, including dependency). 
+- Supports Beizer Curves and custom easing functions, with predefined values. 
+- Custom timing function (uses RAF by default if available) 
+- Pause/resume/stop/restart 
+- Animations respect the actual clock, so no matter the frame rate, the animation will still properly last the appropriate amount of time.
 
 ## Installation
 
@@ -28,7 +30,7 @@ This includes all dependencies.
 </script>
 ```
 
-## Example Usage
+## Example Usage (ES6)
 
 ```javascript
 import sso from 'smooth-scroll-operator';
@@ -71,6 +73,53 @@ setTimeout(() => {
 
 //Scroll and then immediately stop animation
 let animation = sso.scrollY(window, 500);
+
+animation.stop();
+```
+
+## Example Usage (ES5)
+
+```javascript
+var sso = require('smooth-scroll-operator');
+
+var el = document.querySelector('.myElement');
+
+//scroll el to 500
+sso.scrollY(el, 500);
+
+// Scroll to y = 500, with a duration of 200ms, and a custom cubic-bezier easing function:
+sso.scrollY(el, 500, {
+  duration: 200,
+  easing: [0.42, 0.0, 0.58, 1.0]
+});
+
+// Scroll to y = 500, with a duration of 200ms, and a pre-defined easing function.
+sso.scrollY(el, 500, {
+  duration: 200,
+  easing: sso.EASE_IN
+});
+
+//scroll window
+sso.scrollY(window, 500);
+
+//Scroll and then pause animation 300ms later.
+var animation = sso.scrollY(el, 500);
+
+setTimeout(() => {
+  
+  animation.pause();
+  
+}, 300);
+
+//resume 400ms later.
+setTimeout(() => {
+  
+  animation.resume();
+  
+}, 400);
+
+//Scroll and then immediately stop animation
+var animation = sso.scrollY(window, 500);
 
 animation.stop();
 ```
