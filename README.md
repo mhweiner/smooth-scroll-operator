@@ -3,7 +3,7 @@ A dead simple and lightweight library to animate the scroll of the window or any
 
 No need to ask, he's a [smooth operator](https://www.youtube.com/watch?v=4TYv2PhG89A)...
 
-- Really small filesize, only 1 dependency (<3KB uncompressed, including dependency). 
+- Really small filesize, only 1 dependency (~3KB uncompressed, including dependencies). 
 - Supports Beizer Curves and custom easing functions, with predefined values. 
 - Custom timing function (uses RAF by default if available) 
 - Pause/resume/stop/restart 
