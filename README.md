@@ -24,8 +24,7 @@ This includes all dependencies.
 ```html
 <script src="./path/to/smooth-scroll-operator.min.umd.js"></script>
 <script>
-    let el = document.querySelector('.myElement');
-    SmoothScrollOperator.scrollY(el, 500);
+    SmoothScrollOperator.scrollY(window, 500);
 </script>
 ```
 
@@ -53,14 +52,35 @@ sso.scrollY(el, 500, {
 
 //scroll window
 sso.scrollY(window, 500);
+
+//Scroll and then pause animation 300ms later.
+let animation = sso.scrollY(el, 500);
+
+setTimeout(() => {
+  
+  animation.pause();
+  
+}, 300);
+
+//resume 400ms later.
+setTimeout(() => {
+  
+  animation.resume();
+  
+}, 400);
+
+//Scroll and then immediately stop animation
+let animation = sso.scrollY(window, 500);
+
+animation.stop();
 ```
 
 ## API
 
 ### `scrollY({HTMLElement} el, {number} targetY, {object=} options)`
 
-Animates the `.scrollTop` property of a given element (scrolls to target position). Returns an instance of [DOMAnimateProperty](https://github.com/mhweiner/dom-animate-property).
-You can cancel the animation by calling `.cancel()` on the returned instance.
+Animates the `.scrollTop` property of a given element (scrolls to target position). Returns an instance of [DOMAnimate](https://github.com/mhweiner/dom-animate).
+You can stop, pause, or resume the animation by calling `.stop()`, `.pause()`, or `.resume()`, respectively, on the returned instance.
 
 #### `{HTMLElement} el`
 
