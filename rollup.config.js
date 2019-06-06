@@ -52,6 +52,6 @@ export default [
         exclude: 'node_modules/**'
       })
     ],
-    external: [ 'bezier-easing' ]
+    external: [ 'dom-animate' ]
   }
 ];
