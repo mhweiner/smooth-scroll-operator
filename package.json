@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/mhweiner/smooth-scroll-operator",
   "dependencies": {
-    "dom-animate": "^5.0.3"
+    "dom-animate": "5.0.4"
   },
   "devDependencies": {
     "np": "^5.0.2",
