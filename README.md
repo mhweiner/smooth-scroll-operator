@@ -24,7 +24,7 @@ You can use either `smooth-scroll-operator.umd.js` or `smooth-scroll-operator.mi
 This includes all dependencies.
 
 ```html
-<script src="./path/to/smooth-scroll-operator.min.umd.js"></script>
+<script src="smooth-scroll-operator.min.umd.js"></script>
 <script>
     SmoothScrollOperator.scrollY(window, 500);
 </script>
@@ -110,13 +110,19 @@ A callback function that is called when the animation is finished.
 
 ## Constants
 
-### Bezier Curve Easing Functions
+### `EASING`
 
-`EASE`, `EASE_IN`, `EASE_OUT`, `EASE_IN_OUT`, `LINEAR`
+`smooth-scroll-operator` ships with a small Bezier Curve library:
+
+- `EASING.EASE`
+- `EASING.EASE_IN`
+- `EASING.EASE_OUT`
+- `EASING.EASE_IN_OUT`
+- `EASING.LINEAR`
 
 ## License
 
-[MIT](https://github.com/mhweiner/mr-router/blob/master/LICENSE). Free to use in all your things!
+[MIT](https://github.com/mhweiner/smooth-scroll-operator/blob/master/LICENSE). Free to use in all your things!
 
 ## Contribution
 
