@@ -461,10 +461,10 @@ del@^4.1.0:
     pify "^4.0.1"
     rimraf "^2.6.3"
 
-dom-animate@^4.0.11:
-  version "4.0.11"
-  resolved "https://registry.yarnpkg.com/dom-animate/-/dom-animate-4.0.11.tgz#bd0817e92034eb708de4dc0e3420acd9d583b7ea"
-  integrity sha512-6kMs7GWmT5PatT0OUsYGqCkjVSIAPe1qKxAXxOdZoeWcAWWn2URLoW5ETugigVGYYIBVNcQi7kGZVn1WeUQjhg==
+dom-animate@^5.0.3:
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/dom-animate/-/dom-animate-5.0.3.tgz#e2821af48b049e6475e6b3bb6f15e9a217aae98f"
+  integrity sha512-DVSO8FS+yqiK6WjThH624sl3ONxSUWpvVp2mjws2Z1NdTjzQazVXmExlLmeFnJVrIZD9mnOtQg9HGXzUcXXZqg==
   dependencies:
     bezier-easing "2.0.3"
 

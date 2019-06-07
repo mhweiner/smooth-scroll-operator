@@ -30,7 +30,7 @@ This includes all dependencies.
 </script>
 ```
 
-## Example Usage (ES6)
+## Example Usage
 
 ```javascript
 import sso from 'smooth-scroll-operator';
@@ -49,7 +49,7 @@ sso.scrollY(el, 500, {
 // Scroll to y = 500, with a duration of 200ms, and a pre-defined easing function.
 sso.scrollY(el, 500, {
   duration: 200,
-  easing: sso.EASE_IN
+  easing: sso.EASING.EASE_IN
 });
 
 //scroll window
@@ -73,53 +73,6 @@ setTimeout(() => {
 
 //Scroll and then immediately stop animation
 let animation = sso.scrollY(window, 500);
-
-animation.stop();
-```
-
-## Example Usage (ES5)
-
-```javascript
-var sso = require('smooth-scroll-operator');
-
-var el = document.querySelector('.myElement');
-
-//scroll el to 500
-sso.scrollY(el, 500);
-
-// Scroll to y = 500, with a duration of 200ms, and a custom cubic-bezier easing function:
-sso.scrollY(el, 500, {
-  duration: 200,
-  easing: [0.42, 0.0, 0.58, 1.0]
-});
-
-// Scroll to y = 500, with a duration of 200ms, and a pre-defined easing function.
-sso.scrollY(el, 500, {
-  duration: 200,
-  easing: sso.EASE_IN
-});
-
-//scroll window
-sso.scrollY(window, 500);
-
-//Scroll and then pause animation 300ms later.
-var animation = sso.scrollY(el, 500);
-
-setTimeout(() => {
-  
-  animation.pause();
-  
-}, 300);
-
-//resume 400ms later.
-setTimeout(() => {
-  
-  animation.resume();
-  
-}, 400);
-
-//Scroll and then immediately stop animation
-var animation = sso.scrollY(window, 500);
 
 animation.stop();
 ```

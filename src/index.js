@@ -5,50 +5,44 @@
  * @license MIT
  */
 
-var Animator = require('dom-animate');
+var DOMAnimate = require('dom-animate');
 
-function SmoothScrollOperator() {
+/**
+ * Animate scrolling element to position.
+ * @param {HTMLElement} el
+ * @param {number} targetY
+ * @param {object=} options
+ */
+function scrollY(el, targetY, options) {
 
-  this.EASE = [0.25, 0.1, 0.25, 1];
-  this.EASE_IN = [0.42, 0, 1, 1];
-  this.EASE_OUT = [0, 0, 0.58, 1];
-  this.EASE_IN_OUT = [0.42, 0, 0.58, 1];
-  this.LINEAR = [0, 0, 1, 1];
+  //validate target
+  var maxTarget = el.scrollHeight - el.offsetHeight;
 
-  /**
-   * Animate scrolling element to position.
-   * @param {HTMLElement} el
-   * @param {number} targetY
-   * @param {object=} options
-   */
-  this.scrollY = function(el, targetY, options) {
+  //constrain to max
+  var target = targetY > maxTarget ? maxTarget : targetY;
 
-    //validate target
-    var maxTarget = el.scrollHeight - el.offsetHeight;
+  //start position is current position
+  var startPosition = el === window ? el.scrollY : el.scrollTop;
 
-    //constrain to max
-    var target = targetY > maxTarget ? maxTarget : targetY;
+  //animate!
+  return new DOMAnimate(startPosition, target, function(x) {
 
-    //start position is current position
-    var startPosition = el === window ? el.scrollY : el.scrollTop;
+    if (el === window) {
 
-    //animate!
-    return new Animator(startPosition, target, function(x) {
+      el.scrollTo(0, x);
 
-      if (el === window) {
+    } else {
 
-        el.scrollTo(0, x);
+      el.scrollTop = x;
 
-      } else {
+    }
 
-        el.scrollTop = x;
-
-      }
-
-    }, options);
-
-  };
+  }, options);
 
 }
+
+function SmoothScrollOperator(){}
+SmoothScrollOperator.scrollY = scrollY;
+SmoothScrollOperator.EASING = DOMAnimate.EASING;
 
 module.exports = SmoothScrollOperator;
